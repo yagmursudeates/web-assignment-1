@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .go-home {
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+        }
+        .navbar {
+            background-color: #343a40; /* Koyu gri */
+        }
+        .navbar-brand {
+            background-color: #0056b3; /* Daha koyu mavi */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .product-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        .product-image {
+            max-width: 400px; /* Fotoğrafı biraz büyütüyoruz */
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-right: 30px;
+        }
+        .product-details {
+            flex: 1;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-details h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #343a40;
+        }
+        .product-details p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #343a40;">
+        <div class="container-fluid">
+            <a class="navbar-brand"href="{{ url_for('home') }}">secondhand.com</a>
+            <div class="search-bar">
+                <form action="{{ url_for('search') }}" method="POST" class="d-flex">
+                    <input type="text" name="search_query" placeholder="Search..." class="form-control" style="display: inline-block; width: auto;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="product-container">
+            <img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.name }}" class="product-image">
+            <div class="product-details">
+                <h2>{{ ad.name }}</h2>
+                <p><b>Description:</b> {{ ad.description }}</p>
+                <p><b>Price:</b> {{ ad.price }}₺</p>
+                <p><b>City:</b> {{ ad.city }}</p>
+                <p><b>Category:</b> {{ ad.category }}</p>
+                <p><b>Type:</b> {{ ad.alt_category }}</p>
+            </div>
+        </div>
+        <a href="/" class="go-home">Go Home</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
